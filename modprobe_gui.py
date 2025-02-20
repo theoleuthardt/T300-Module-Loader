@@ -7,22 +7,22 @@ def load_module():
         subprocess.run(["sudo", "/usr/sbin/modprobe", "/var/lib/modules/hid-tmff-new.ko"], check=True)
         result = subprocess.run(["lsmod"], capture_output=True, text=True)
         if "hid_tmff_new" in result.stdout:
-            messagebox.showinfo("Erfolg", "Modul erfolgreich geladen und überprüft!")
+            messagebox.showinfo("Success", "Module successfully loaded and checked!")
         else:
-            messagebox.showwarning("Warnung", "Modul wurde geladen, aber nicht in lsmod gefunden!")
+            messagebox.showwarning("Warning", "Module couldn't be find by lsmod!")
     except subprocess.CalledProcessError as e:
-        messagebox.showerror("Fehler", f"Fehler beim Laden des Moduls:\n{e}")
+        messagebox.showerror("Error", f"Error while loading module:\n{e}")
 
 def unload_module():
     try:
         subprocess.run(["sudo", "/usr/sbin/rmmod", "hid_tmff_new"], check=True)
         result = subprocess.run(["lsmod"], capture_output=True, text=True)
         if "hid_tmff_new" in result.stdout:
-            messagebox.showwarning("Warnung", "Modul wurde nciht entladen!")
+            messagebox.showwarning("Warning", "Module couldn't be removed!")
         else:
-            messagebox.showinfo("Erfolg", "Modul erfolgreich entladen und überprüft!")
+            messagebox.showinfo("Success", "Module sucessfully removed!")
     except subprocess.CalledProcessError as e:
-        messagebox.showerror("Fehler", f"Fehler beim Entladen des Moduls:\n{e}")
+        messagebox.showerror("Error", f"Error while removing module:\n{e}")
 
 root = tk.Tk()
 root.title("T300 Module Loader")
