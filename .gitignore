@@ -1,0 +1,5 @@
+/.venv
+/build
+/dist
+/hid-tmff2
+T300-Module-Loader.spec
